@@ -126,8 +126,6 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
-    env_file:
-      - .env
 
 volumes:
   pgdata2:
