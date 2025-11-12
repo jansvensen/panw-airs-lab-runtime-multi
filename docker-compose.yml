@@ -94,8 +94,8 @@ services:
       - ./litellm/litellm-config.yaml:/app/config.yaml
     command: --config /app/config.yaml --port 4000
     environment:
-      - LITELLM_MASTER_KEY=sk-1234
-      - LITELLM_SALT_KEY=sk-salt-1234
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      - LITELLM_SALT_KEY=${LITELLM_MASTER_KEY_SALT}
       - AZURE_API_KEY=${AZURE_API_KEY}
       - AZURE_BASE_URL=${AZURE_BASE_URL}
       - AZURE_BASE_URL_OPENAI=${AZURE_BASE_URL_OPENAI}
