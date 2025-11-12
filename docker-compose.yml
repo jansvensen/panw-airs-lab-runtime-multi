@@ -3,7 +3,7 @@
 
 services:
 
-  api:
+  librechat:
     container_name: LibreChat
     ports:
       - "${PORT}:${PORT}"
@@ -28,10 +28,9 @@ services:
       - ./images:/app/client/public/images
       - ./uploads:/app/uploads
       - ./logs:/app/logs
-    volumes:
-    - type: bind
-      source: ./librechat.yaml
-      target: /app/librechat.yaml
+      - type: bind
+        source: ./librechat.yaml
+        target: /app/librechat.yaml
     networks:
       - librechat-network
 
