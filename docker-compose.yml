@@ -93,6 +93,6 @@ networks:
   librechat-network:
     driver: bridge
 
-#include:
-#  - ./openwebui/openwebui-docker-compose.yml
-#  - ./litellm/litellm-docker-compose.yml
+include:
+  - ./openwebui/openwebui-docker-compose.yml
+  - ./litellm/litellm-docker-compose.yml
