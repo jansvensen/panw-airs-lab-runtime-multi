@@ -94,5 +94,5 @@ networks:
     driver: bridge
 
 include:
-  - ./openwebui/docker-compose-openwebui.yml
-  - ./litellm/docker-compose-litellm.yml
+  - ./openwebui/docker-compose.yml
+  - ./litellm/docker-compose.yml

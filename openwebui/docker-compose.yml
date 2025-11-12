@@ -1,6 +1,4 @@
-services:
-
-  open-webui:
+open-webui:
     image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
     volumes:
