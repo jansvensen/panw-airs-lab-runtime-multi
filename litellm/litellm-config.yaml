@@ -31,6 +31,5 @@ guardrails:
       mask_response_content: true            # Mask sensitive data in responses
       default_on: true # ENSURE THIS IS TRUE to apply to all requests
 
-litellm_settings:
 general_settings:
   master_key: sk-1234 
