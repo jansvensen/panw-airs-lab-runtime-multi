@@ -103,6 +103,8 @@ services:
       - AIRS_DEFAULT_PROFILE_NAME=${AIRS_DEFAULT_PROFILE_NAME}
       - AIRS_API_URL=${AIRS_API_URL}
       - LITELLM_DEBUG=true
+      - TRUEFOUNDRY_API_KEY=${TRUEFOUNDRY_API_KEY}
+      - TRUEFOUNDRY_GATEWAY_URL=${TRUEFOUNDRY_GATEWAY_URL}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:

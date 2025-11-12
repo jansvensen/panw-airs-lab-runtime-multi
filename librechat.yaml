@@ -114,3 +114,15 @@ endpoints:
         top_p: 0.9
         frequency_penalty: 0
         presence_penalty: 0
+    - name: "TrueFoundry"
+      apiKey: "${TRUEFOUNDRY_API_KEY}"
+      baseURL: "${TRUEFOUNDRY_GATEWAY_URL}"
+      models:
+          default: ["openai-main/gpt-4o-mini", "openai-main/gpt-4o"]
+          fetch: true
+      titleConvo: true
+      titleModel: "current_model"
+      summarize: false
+      summaryModel: "current_model"
+      forcePrompt: false
+      modelDisplayLabel: "TrueFoundry:OpenAI"
