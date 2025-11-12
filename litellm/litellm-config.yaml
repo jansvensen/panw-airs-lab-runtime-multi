@@ -1,0 +1,36 @@
+model_list:
+  - model_name:  DeepSeek-R1
+    litellm_params:
+      model: azure_ai/DeepSeek-R1
+      api_base: os.environ/AZURE_BASE_URL
+      api_key: os.environ/AZURE_API_KEY
+  - model_name:  gpt-4.1-mini
+    litellm_params:
+      model: azure_ai/responses/gpt-4.1-mini
+      api_base: os.environ/AZURE_BASE_URL_OPENAI
+      api_key: os.environ/AZURE_API_KEY
+  - model_name:  gpt-4o
+    litellm_params:
+      model: azure_ai/responses/gpt-4o
+      api_base: os.environ/AZURE_BASE_URL_OPENAI
+      api_key: os.environ/AZURE_API_KEY
+  - model_name:  gpt-4o-mini
+    litellm_params:
+      model: azure_ai/responses/gpt-4o-mini
+      api_base: os.environ/AZURE_BASE_URL_OPENAI
+      api_key: os.environ/AZURE_API_KEY
+
+guardrails:
+  - guardrail_name: "panw-prisma-airs"
+    litellm_params:
+      guardrail: panw_prisma_airs
+      mode: "pre_call"  # Or "post_call"
+      api_key: os.environ/AIRS_API_KEY
+      profile_name: os.environ/AIRS_DEFAULT_PROFILE_NAME
+      mask_request_content: true             # Mask sensitive data in prompts
+      mask_response_content: true            # Mask sensitive data in responses
+      default_on: true # ENSURE THIS IS TRUE to apply to all requests
+
+litellm_settings:
+general_settings:
+  master_key: sk-1234 
