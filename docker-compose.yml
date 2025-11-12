@@ -29,7 +29,7 @@ services:
         source: ./librechat.yaml
         target: /app/librechat.yaml
     networks:
-      - ai-network
+      - librechat-network
 
   mongodb:
     container_name: chat-mongodb
@@ -40,7 +40,7 @@ services:
       - ./data-node:/data/db
     command: mongod --noauth
     networks:
-      - ai-network
+      - librechat-network
 
   meilisearch:
     container_name: chat-meilisearch
@@ -54,7 +54,7 @@ services:
     volumes:
       - ./meili_data_v1.12:/meili_data
     networks:
-      - ai-network
+      - librechat-network
 
   vectordb:
     container_name: vectordb
@@ -67,7 +67,7 @@ services:
     volumes:
       - pgdata2:/var/lib/postgresql/data
     networks:
-    - ai-network
+    - librechat-network
 
   rag_api:
     container_name: rag_api
@@ -81,7 +81,7 @@ services:
     env_file:
       - .env
     networks:
-      - ai-network
+      - librechat-network
 
   # LiteLLM Proxy
   litellm:
@@ -94,8 +94,8 @@ services:
       - ./litellm/litellm-config.yaml:/app/config.yaml
     command: --config /app/config.yaml --port 4000
     environment:
-      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
-      - LITELLM_SALT_KEY=${LITELLM_MASTER_KEY_SALT}
+      - LITELLM_MASTER_KEY=sk-1234
+      - LITELLM_SALT_KEY=sk-salt-1234
       - AZURE_API_KEY=${AZURE_API_KEY}
       - AZURE_BASE_URL=${AZURE_BASE_URL}
       - AZURE_BASE_URL_OPENAI=${AZURE_BASE_URL_OPENAI}
@@ -108,7 +108,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - ai-network
+      - librechat-network
     env_file:
       - .env
 
@@ -120,16 +120,20 @@ services:
     ports:
       - 3000:8080
     environment:
-      - OPENAI_API_KEY=sk-1234
-      - WEBUI_SECRET_KEY=sk-1234
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+      - ENABLE_OPENAI_API=true
+      - OPENAI_API_KEY=sk-123
+      - OPENAI_API_BASE_URL=http://host.docker.internal:4000
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
+    env_file:
+      - .env
 
 volumes:
   pgdata2:
   open-webui: {}
 
 networks:
-  ai-network:
+  librechat-network:
     driver: bridge
