@@ -28,6 +28,12 @@ services:
       - ./images:/app/client/public/images
       - ./uploads:/app/uploads
       - ./logs:/app/logs
+    volumes:
+    - type: bind
+      source: ./librechat.yaml
+      target: /app/librechat.yaml
+    networks:
+      - librechat-network
 
   mongodb:
     container_name: chat-mongodb
@@ -37,6 +43,8 @@ services:
     volumes:
       - ./data-node:/data/db
     command: mongod --noauth
+    networks:
+      - librechat-network
 
   meilisearch:
     container_name: chat-meilisearch
@@ -49,6 +57,8 @@ services:
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
     volumes:
       - ./meili_data_v1.12:/meili_data
+    networks:
+      - librechat-network
 
   vectordb:
     container_name: vectordb
@@ -60,7 +70,9 @@ services:
     restart: always
     volumes:
       - pgdata2:/var/lib/postgresql/data
-      
+    networks:
+    - librechat-network
+
   rag_api:
     container_name: rag_api
     image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
@@ -72,6 +84,16 @@ services:
       - vectordb
     env_file:
       - .env
+    networks:
+      - librechat-network
 
 volumes:
   pgdata2:
+
+networks:
+  librechat-network:
+    driver: bridge
+
+#include:
+#  - ./openwebui/openwebui-docker-compose.yml
+#  - ./litellm/litellm-docker-compose.yml
