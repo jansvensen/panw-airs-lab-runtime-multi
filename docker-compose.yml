@@ -108,8 +108,22 @@ services:
     networks:
       - librechat-network
 
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+    ports:
+      - 3000:8080
+    environment:
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: unless-stopped
+
 volumes:
   pgdata2:
+  open-webui: {}
 
 networks:
   librechat-network:
