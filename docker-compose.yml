@@ -93,3 +93,4 @@ networks:
 include:
   - ./openwebui/docker-compose.yml
   - ./litellm/docker-compose.yml
+  - ./n8n/docker-compose.yml
