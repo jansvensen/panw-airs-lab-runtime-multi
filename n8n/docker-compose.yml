@@ -12,10 +12,10 @@ services:
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
       - N8N_HOST=0.0.0.0
-      - N8N_EDITOR_BASE_URL=https://airs-lab.jansvensen.de
+      - N8N_EDITOR_BASE_URL=http://airs-lab.jansvensen.de
       - N8N_ENDPOINT_REST=/rest
       - N8N_ENDPOINT_WEBHOOK=/webhook
-      - WEBHOOK_TUNNEL_URL=https://airs-lab.jansvensen.de
+      - WEBHOOK_TUNNEL_URL=http://airs-lab.jansvensen.de
       
 volumes:
   n8n_data:
