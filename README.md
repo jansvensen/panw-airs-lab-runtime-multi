@@ -2,6 +2,8 @@
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
+## 💡💡💡 This Repo is "Work in Progress"! 💡💡💡
+
 ## 💡 Overview
 
 This repository sets up different chatbots frontends and LLM proxies with Palo Alto Networks AIRS integration. It is intended to provide an easily accessible solution to try AIRS with different models.
